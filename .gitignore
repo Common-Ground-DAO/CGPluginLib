@@ -1,0 +1,25 @@
+# Node modules
+node_modules/
+
+# Build output directories
+dist/
+types/
+
+# TypeScript build artifacts
+*.tsbuildinfo
+
+# Rollup cache folder
+.rollup.cache/
+
+# Coverage directory (if using tests)
+coverage/
+
+# Log files
+npm-debug.log*
+yarn-debug.log*
+pnpm-debug.log*
+*.log
+
+# OS generated files
+.DS_Store
+Thumbs.db
