@@ -1,4 +1,4 @@
-import { PluginRequestInner } from "../types";
+import { PluginRequestInner } from "./types";
 import crypto from 'crypto';
 
 class CgPluginLibHost {

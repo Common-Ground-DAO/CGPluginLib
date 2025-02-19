@@ -1,0 +1,46 @@
+{
+  "name": "@common-ground-dao/cg-plugin-lib-host",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/common-ground-dao"
+  },
+  "version": "0.0.1",
+  "description": "Host version of the CG Plugin Library, used for interacting with Common Ground as a plugin",
+  "author": "Common Ground",
+  "license": "MIT",
+  "type": "module",
+  "main": "dist/cjs/index.js",
+  "module": "dist/esm/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "exports": {
+    ".": {
+      "import": "./dist/esm/index.js",
+      "require": "./dist/cjs/index.js"
+    }
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Common-Ground-DAO/CGPluginLib.git"
+  },
+  "scripts": {
+    "build": "rollup -c"
+  },
+  "devDependencies": {
+    "@rollup/plugin-commonjs": "^28.0.2",
+    "@rollup/plugin-node-resolve": "^16.0.0",
+    "@rollup/plugin-typescript": "^12.1.2",
+    "rollup": "^4.34.8",
+    "rollup-plugin-dts": "^6.1.1",
+    "tslib": "^2.8.1",
+    "typescript": "^5.7.3"
+  },
+  "peerDependencies": {
+    "crypto": "^1.0.1"
+  },
+  "dependencies": {
+    "@types/node": "^22.13.4"
+  }
+}

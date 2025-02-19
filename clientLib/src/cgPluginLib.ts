@@ -1,4 +1,20 @@
-import { UserInfoResponsePayload, CommunityInfoResponsePayload, MAX_REQUESTS_PER_MINUTE, ActionResponsePayload, ActionPayload, PluginRequest, PluginRequestInner, PluginContextData, SafeRequest, SafeRequestInner, PluginResponse, CGPluginResponse, InitResponse, PluginResponseInner } from '../types';
+import {
+  UserInfoResponsePayload,
+  CommunityInfoResponsePayload,
+  ActionResponsePayload,
+  ActionPayload,
+  PluginRequest,
+  PluginRequestInner,
+  PluginContextData,
+  SafeRequest,
+  SafeRequestInner,
+  PluginResponse,
+  CGPluginResponse,
+  InitResponse,
+  PluginResponseInner,
+} from './types';
+
+export const MAX_REQUESTS_PER_MINUTE = 100;
 
 // Convert Base64 to Uint8Array
 function base64ToArrayBuffer(base64: string) {
@@ -177,7 +193,7 @@ class CgPluginLib {
   ): Promise<CGPluginResponse<T>> {
     return new Promise(async (resolve, reject) => {
     const requestId = `safeRequest-${Date.now()}-${payload.type}`;
-    let timeoutId: NodeJS.Timeout;
+    let timeoutId: number;
 
     // Listener for the response.
     const responseListener = (payload: CGPluginResponse<T>) => {
@@ -232,7 +248,7 @@ class CgPluginLib {
       const { request } = pluginRequest;
       const requestId = JSON.parse(request).requestId;
 
-      let timeoutId: NodeJS.Timeout;
+      let timeoutId: number;
 
       // Listener for the response.
       const responseListener = (payload: CGPluginResponse<T>) => {
