@@ -157,7 +157,7 @@ class CgPluginLib {
       const isValid = await crypto.subtle.verify('RSASSA-PKCS1-v1_5', CgPluginLib.publicKey, signatureBuffer, encodedMessage);
 
       if (!isValid) {
-        console.error('Invalid signature');
+        throw new Error('Invalid signature');
       }
     }
 
