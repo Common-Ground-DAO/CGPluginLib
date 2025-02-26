@@ -26,6 +26,28 @@ function base64ToArrayBuffer(base64: string) {
   }
   return bytes.buffer;
 }
+
+/**
+ * CgPluginLib - Client library for Cryptogram plugins
+ * 
+ * This library provides functionality for plugins to communicate securely with the Cryptogram platform.
+ * It handles request signing, rate limiting, and message passing between the plugin iframe and parent window. 
+ * 
+ * Usage example:
+ * ```typescript
+ * // Initialize the library
+ * const plugin = await CgPluginLib.initialize(iframeUid, signUrl, publicKey);
+ * 
+ * // Make requests to the platform
+ * const userInfo = await plugin.getUserInfo();
+ * 
+ * // Perform actions
+ * await plugin.giveRole(userId, roleId);
+ * ```
+ * 
+ * The library uses a singleton pattern - only one instance can exist per iframe.
+ * All communication is cryptographically signed to ensure security.
+*/
 class CgPluginLib {
   static instance: CgPluginLib | null = null;
 
@@ -44,6 +66,13 @@ class CgPluginLib {
     // The constructor is disabled. Use initialize() to create an instance.
   }
 
+  /**
+   * Initialize the CgPluginLib instance.
+   * @param {string} iframeUid - The unique identifier for the iframe - This will be available to your plugin through the "iframeUid" parameter in the URL.
+   * @param {string} signUrl - The URL for the request signing route - See the host lib "signRequest" method for more information.
+   * @param {string} publicKey - The public key for the request signing.
+   * @returns {Promise<CgPluginLib>} A promise that resolves to the CgPluginLib instance.
+   */
   public static async initialize(iframeUid: string, signUrl: string, publicKey: string): Promise<CgPluginLib> {
     if (
       CgPluginLib.instance &&
@@ -89,6 +118,11 @@ class CgPluginLib {
     return instance;
   }
 
+  /**
+   * Get the singleton instance of CgPluginLib.
+   * @returns {CgPluginLib} The singleton instance.
+   * @throws {Error} If the instance is not initialized.
+   */
   public static getInstance(): CgPluginLib {
     if (!CgPluginLib.instance) {
       throw new Error('CgPluginLib is not initialized. Call initialize() first.');
@@ -104,7 +138,6 @@ class CgPluginLib {
     CgPluginLib.contextData = {
       pluginId: response.data.pluginId,
       userId: response.data.userId,
-      communityId: response.data.communityId,
     };
   }
 
@@ -141,7 +174,6 @@ class CgPluginLib {
   private async __handleMessage(event: MessageEvent) {
     // Validate the origin of the message.
     if (CgPluginLib.targetOrigin !== '*' && event.origin !== CgPluginLib.targetOrigin) {
-      console.warn('Message origin mismatch:', event.origin);
       return;
     }
 
@@ -186,6 +218,13 @@ class CgPluginLib {
     delete CgPluginLib.listeners[type];
   }
 
+  /**
+   * Send a safe request to the parent. This request does not require signing.
+   * @param {SafeRequestInner['data']} payload - The data to send.
+   * @param {number} timeout - The timeout for the request.
+   * @param {number} maxAttempts - The maximum number of attempts to send the request.
+   * @returns {Promise<CGPluginResponse<T>>} A promise that resolves to the response.
+   */
   private __safeRequest<T extends object>(
     payload: SafeRequestInner['data'],
     timeout: number = 2000,
@@ -234,6 +273,13 @@ class CgPluginLib {
     });
   }
 
+  /**
+   * Send a request to the parent. The request payload will first be signed by the host lib before being sent to the parent.
+   * @param {PluginRequestInner} payload - The data to send.
+   * @param {number} timeout - The timeout for the request.
+   * @param {number} maxAttempts - The maximum number of attempts to send the request.
+   * @returns {Promise<CGPluginResponse<T>>} A promise that resolves to the response.
+   */
   private __request<T extends object>(
     payload: Omit<PluginRequestInner, 'requestId' | 'pluginId'>,
     timeout: number = 2000,
@@ -301,7 +347,6 @@ class CgPluginLib {
       type: 'request',
       data: {
         type: 'communityInfo',
-        communityId: CgPluginLib.contextData.communityId,
       },
       iframeUid: CgPluginLib.iframeUid,
     });
@@ -314,7 +359,7 @@ class CgPluginLib {
    * @returns {Promise<ActionResponsePayload>} A promise that resolves to the action response.
    */
   public async giveRole(roleId: string, userId: string): Promise<CGPluginResponse<ActionResponsePayload>> {
-    const payload: ActionPayload = { type: 'giveRole', roleId, userId, communityId: CgPluginLib.contextData.communityId };
+    const payload: ActionPayload = { type: 'giveRole', roleId, userId };
     return this.__request<ActionResponsePayload>({
       type: 'action',
       data: payload,

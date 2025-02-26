@@ -14,7 +14,6 @@ export type SafeRequestInner = {
 export type InitResponse = {
     pluginId: string;
     userId: string;
-    communityId: string;
 }
 
 export type SafeRequestResponse = InitResponse;
@@ -22,7 +21,6 @@ export type SafeRequestResponse = InitResponse;
 export type PluginContextData = {
     pluginId: string;
     userId: string;
-    communityId: string;
 }
 
 export type CGPluginResponse<T extends object> = {
@@ -67,12 +65,10 @@ export type UserInfoRequestPayload = {
 
 export type CommunityInfoRequestPayload = {
     type: 'communityInfo';
-    communityId: string;
 }
 
 export type GiveRoleActionPayload = {
     type: 'giveRole';
-    communityId: string;
     roleId: string;
     userId: string;
 }
