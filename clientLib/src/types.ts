@@ -77,6 +77,7 @@ export interface UserInfoResponsePayload {
     id: string;
     name: string;
     email: string;
+    roles: string[];
 }
 
 export interface CommunityInfoResponsePayload {
