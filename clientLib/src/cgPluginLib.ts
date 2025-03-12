@@ -81,10 +81,8 @@ class CgPluginLib {
       CgPluginLib.publicKeyString === publicKey
     ) {
       return CgPluginLib.instance;
-    }
-
-    if (CgPluginLib.instance && CgPluginLib.iframeUid !== iframeUid) {
-      CgPluginLib.instance.__destroy();
+    } else {
+      CgPluginLib.instance?.__destroy();
     }
 
     // Convert PEM to binary ArrayBuffer
