@@ -3,7 +3,7 @@
   "publishConfig": {
     "registry": "https://npm.pkg.github.com/common-ground-dao"
   },
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Client for interacting with Common Ground as a plugin",
   "author": "Common Ground",
   "license": "MIT",
