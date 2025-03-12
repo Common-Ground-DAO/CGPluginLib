@@ -3,7 +3,7 @@
   "publishConfig": {
     "registry": "https://npm.pkg.github.com/common-ground-dao"
   },
-  "version": "0.0.2",
+  "version": "1.0.0",
   "description": "Host version of the CG Plugin Library, used for interacting with Common Ground as a plugin",
   "author": "Common Ground",
   "license": "MIT",
