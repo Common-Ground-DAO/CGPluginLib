@@ -263,6 +263,7 @@ class CgPluginLib {
           attemptSend();
         } else {
           reject(new Error('Request timed out'));
+          this.__off(requestId);
         }
       }, timeout);
     };
