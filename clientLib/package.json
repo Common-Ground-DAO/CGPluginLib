@@ -1,9 +1,6 @@
 {
   "name": "@common-ground-dao/cg-plugin-lib",
-  "publishConfig": {
-    "registry": "https://npm.pkg.github.com/common-ground-dao"
-  },
-  "version": "1.0.1",
+  "version": "0.9.0",
   "description": "Client for interacting with Common Ground as a plugin",
   "author": "Common Ground",
   "license": "MIT",
@@ -29,7 +26,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/Common-Ground-DAO/CGPluginLib.git"
+    "url": "git+https://github.com/Common-Ground-DAO/CGPluginLib.git"
   },
   "scripts": {
     "build": "rollup -c"
@@ -42,5 +39,9 @@
     "rollup-plugin-dts": "^6.1.1",
     "tslib": "^2.8.1",
     "typescript": "^5.7.3"
-  }
+  },
+  "bugs": {
+    "url": "https://github.com/Common-Ground-DAO/CGPluginLib/issues"
+  },
+  "homepage": "https://github.com/Common-Ground-DAO/CGPluginLib#readme"
 }
