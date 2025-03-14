@@ -35,7 +35,7 @@ To create a plugin, follow these steps:
 ## How to use - Client
 Add the client library to your project 
 ```bash
-  yarn add @common-ground-dao/cg-plugin-lib
+  npm install @common-ground-dao/cg-plugin-lib
 ```
 
 To instantiate the client, you will need:
@@ -60,7 +60,7 @@ Once initialized, you can always get the instance with ``CgPluginLib.getInstance
 ## How to use - Server
 Add the server library to your project
 ```bash
-  yarn add @common-ground-dao/cg-plugin-lib-host
+  npm install @common-ground-dao/cg-plugin-lib-host
 ```
 
 The server library provides functionality for signing requests from your frontend. You'll need to create an API endpoint that receives requests from your frontend, signs them with your private key, and returns the signed request.
