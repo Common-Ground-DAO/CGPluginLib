@@ -76,7 +76,6 @@ export type GiveRoleActionPayload = {
 export interface UserInfoResponsePayload {
     id: string;
     name: string;
-    email: string;
     roles: string[];
 }
 
