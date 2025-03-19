@@ -95,8 +95,10 @@ class CgPluginLib {
       return base64ToArrayBuffer(base64String);
     }
 
+    const parentOrigin = window.location?.ancestorOrigins?.[0];
+
     CgPluginLib.iframeUid = iframeUid;
-    CgPluginLib.targetOrigin = '*'; // Restrict communication to specific origins for security.
+    CgPluginLib.targetOrigin = parentOrigin || '*'; // Restrict communication to specific origins for security.
     CgPluginLib.parentWindow = window.parent; // Reference to the parent window.
     CgPluginLib.listeners = {}; // Store custom message listeners.
     CgPluginLib.signUrl = signUrl; // The URL for the request signing route.
