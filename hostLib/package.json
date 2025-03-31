@@ -1,6 +1,6 @@
 {
   "name": "@common-ground-dao/cg-plugin-lib-host",
-  "version": "0.9.2",
+  "version": "0.9.4",
   "description": "Host version of the CG Plugin Library, used for interacting with Common Ground as a plugin",
   "author": "Common Ground",
   "license": "MIT",

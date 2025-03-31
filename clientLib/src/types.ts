@@ -8,6 +8,9 @@ export type SafeRequestInner = {
     requestId: string;
     data: {
         type: 'init';
+    } | {
+        type: 'navigate';
+        to: `/${string}`;
     }
 }
 
@@ -16,7 +19,11 @@ export type InitResponse = {
     userId: string;
 }
 
-export type SafeRequestResponse = InitResponse;
+export type NavigateResponse = {
+    ok: true;
+}
+
+export type SafeRequestResponse = InitResponse | NavigateResponse;
 
 export type PluginContextData = {
     pluginId: string;
@@ -56,7 +63,7 @@ export type PluginResponseInner = {
     requestId: string;
 }
 
-export type RequestPayload = UserInfoRequestPayload | CommunityInfoRequestPayload;
+export type RequestPayload = UserInfoRequestPayload | CommunityInfoRequestPayload | UserFriendsRequestPayload;
 export type ActionPayload = GiveRoleActionPayload;
 
 export type UserInfoRequestPayload = {
@@ -65,6 +72,12 @@ export type UserInfoRequestPayload = {
 
 export type CommunityInfoRequestPayload = {
     type: 'communityInfo';
+}
+
+export type UserFriendsRequestPayload = {
+    type: 'userFriends';
+    limit: number;
+    offset: number;
 }
 
 export type GiveRoleActionPayload = {
@@ -96,8 +109,14 @@ export interface CommunityInfoResponsePayload {
     }[];
 }
 
+export interface UserFriendsResponsePayload {
+    friends: {
+        id: string;
+        name: string;
+    }[];
+}
 export interface ActionResponsePayload {
     success: boolean;
 }
 
-export type AnyResponsePayload = UserInfoResponsePayload | CommunityInfoResponsePayload | ActionResponsePayload;
+export type AnyResponsePayload = UserInfoResponsePayload | CommunityInfoResponsePayload | UserFriendsResponsePayload | ActionResponsePayload;

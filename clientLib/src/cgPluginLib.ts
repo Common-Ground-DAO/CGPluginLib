@@ -12,6 +12,7 @@ import {
   CGPluginResponse,
   InitResponse,
   PluginResponseInner,
+  UserFriendsResponsePayload,
 } from './types';
 
 export const MAX_REQUESTS_PER_MINUTE = 100;
@@ -348,6 +349,24 @@ class CgPluginLib {
       type: 'request',
       data: {
         type: 'communityInfo',
+      },
+      iframeUid: CgPluginLib.iframeUid,
+    });
+  }
+
+  /**
+   * Get the friends from the current user.
+   * @param {number} limit - Limit of entries to return.
+   * @param {number} offset - Offset to the start of the friends list.
+   * @returns {Promise<CgPluginLib.Response.UserFriends>} A promise that resolves to the user friends.
+   */
+  public async getUserFriends(limit: number, offset: number): Promise<CGPluginResponse<UserFriendsResponsePayload>> {
+    return this.__request<UserFriendsResponsePayload>({
+      type: 'request',
+      data: {
+        type: 'userFriends',
+        limit,
+        offset,
       },
       iframeUid: CgPluginLib.iframeUid,
     });
