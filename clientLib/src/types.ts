@@ -90,6 +90,20 @@ export interface UserInfoResponsePayload {
     id: string;
     name: string;
     roles: string[];
+    imageUrl: string;
+    twitter?: {
+        username: string;
+    };
+    lukso?: {
+        username: string;
+        address: string;
+    };
+    farcaster?: {
+        displayName: string;
+        username: string;
+        fid: number;
+    };
+    email?: string;
 }
 
 export interface CommunityInfoResponsePayload {
@@ -113,6 +127,7 @@ export interface UserFriendsResponsePayload {
     friends: {
         id: string;
         name: string;
+        imageUrl: string;
     }[];
 }
 export interface ActionResponsePayload {
