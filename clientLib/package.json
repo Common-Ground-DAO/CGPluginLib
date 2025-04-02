@@ -1,6 +1,6 @@
 {
   "name": "@common-ground-dao/cg-plugin-lib",
-  "version": "0.9.5",
+  "version": "0.9.6",
   "description": "Client for interacting with Common Ground as a plugin",
   "author": "Common Ground",
   "license": "MIT",

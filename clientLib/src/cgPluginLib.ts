@@ -13,6 +13,7 @@ import {
   InitResponse,
   PluginResponseInner,
   UserFriendsResponsePayload,
+  ErrorResponse,
 } from './types';
 
 export const MAX_REQUESTS_PER_MINUTE = 100;
@@ -299,8 +300,12 @@ class CgPluginLib {
       let timeoutId: number;
 
       // Listener for the response.
-      const responseListener = (payload: CGPluginResponse<T>) => {
-        resolve(payload);
+      const responseListener = (payload: CGPluginResponse<T | ErrorResponse>) => {
+        if ('error' in payload.data) {
+          reject(new Error(payload.data.error));
+        } else {
+          resolve(payload as CGPluginResponse<T>);
+        }
         clearTimeout(timeoutId);
         this.__off(requestId);
       };

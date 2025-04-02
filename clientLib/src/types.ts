@@ -25,6 +25,10 @@ export type NavigateResponse = {
 
 export type SafeRequestResponse = InitResponse | NavigateResponse;
 
+export type ErrorResponse = {
+    error: string;
+}
+
 export type PluginContextData = {
     pluginId: string;
     userId: string;
@@ -58,7 +62,7 @@ export type PluginRequestInner = {
 })
 
 export type PluginResponseInner = {
-    data: AnyResponsePayload | SafeRequestResponse;
+    data: AnyResponsePayload | SafeRequestResponse | ErrorResponse;
     pluginId: string;
     requestId: string;
 }
