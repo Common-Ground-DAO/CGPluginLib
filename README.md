@@ -8,13 +8,18 @@ The Common Ground Plugin Library enables developers to build secure plugins that
 
 - **Secure Communication**: All plugin-host communication is signed using public/private key pairs
 - **Type Safety**: Full TypeScript support with shared type definitions
+- **Permission Locked**: Configure mandatory and optional permissions to access features like the user accounts or camera/microphone access
 - **Request Types**:
   - `userInfo`: Get details about the current user including roles
   - `communityInfo`: Get community details including available roles
+  - `userFriends`: Get the mutual friends of the current user
 - **Action Types**:
   - `giveRole`: Assign roles to users (if plugin has permission)
 
 ## How does it work?
+
+![Alt text](images/plugin_graph.png)
+
 The Common Ground Plugin Library enables your application to interact with the Common Ground platform through a secure interface. Your application runs inside a sandboxed iframe within Common Ground, allowing you to build games, tools, and services that can access user and community data.
 
 Due to the sandboxed environment, plugins communicate with Common Ground through a secure message passing system. Each request is cryptographically signed to ensure authenticity and security. This library handles all the complexity of request signing and provides a simple interface for accessing Common Ground features - you just make the requests you need and the library takes care of the security details.
@@ -31,6 +36,14 @@ To create a plugin, follow these steps:
    - IMPORTANT: Save these keys immediately - they are only shown once
    - These keys are required for secure communication with Common Ground
    - If you lose the keys, you'll need to create a new plugin
+
+Once your plugin is created, you can configure its permissions in the settings. These permissions control what your plugin can access:
+
+- **Mandatory Permissions**: Users must accept these before your plugin starts
+- **Optional Permissions**: Users can toggle these at any time
+  - Your plugin should handle both enabled/disabled states
+
+![Alt text](images/permissions.png)
 
 ## How to use - Client
 Add the client library to your project 
@@ -80,9 +93,6 @@ router.post('/sign', async (req, res) => {
   }
 });
 ```
-
-
-
 
 ## Examples
 To see a sample implementation of the plugin, check the [CG Sample Plugin](https://github.com/Common-Ground-DAO/CGSamplePlugin) repo.
