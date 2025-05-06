@@ -10,7 +10,7 @@ export type SafeRequestInner = {
         type: 'init';
     } | {
         type: 'navigate';
-        to: `/${string}`;
+        to: string;
     }
 }
 
@@ -113,6 +113,7 @@ export interface UserInfoResponsePayload {
 export interface CommunityInfoResponsePayload {
     id: string;
     title: string;
+    url: string;
     roles: {
         id: string;
         title: string;

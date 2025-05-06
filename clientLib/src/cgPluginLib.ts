@@ -14,6 +14,7 @@ import {
   PluginResponseInner,
   UserFriendsResponsePayload,
   ErrorResponse,
+  NavigateResponse,
 } from './types';
 
 export const MAX_REQUESTS_PER_MINUTE = 100;
@@ -389,6 +390,13 @@ class CgPluginLib {
       type: 'action',
       data: payload,
       iframeUid: CgPluginLib.iframeUid,
+    });
+  }
+
+  public async navigate(url: string): Promise<CGPluginResponse<NavigateResponse>> {
+    return this.__safeRequest<NavigateResponse>({
+      type: 'navigate',
+      to: url,
     });
   }
 }
