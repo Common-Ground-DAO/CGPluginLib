@@ -333,6 +333,14 @@ class CgPluginLib {
   }
 
   /**
+   * Get the context data for the plugin. Context data includes the plugin ID and user ID.
+   * @returns {PluginContextData} The context data.
+   */
+  public getContextData(): PluginContextData {
+    return CgPluginLib.contextData;
+  }
+
+  /**
    * Get the user info from the parent.
    * @returns {Promise<CgPluginLib.Response.UserInfo>} A promise that resolves to the user info.
    */
@@ -393,6 +401,10 @@ class CgPluginLib {
     });
   }
 
+  /**
+   * Asks the user to open a new window with the given url.
+   * @param {string} url - The URL to navigate to. Must be a valid URL.
+   */
   public async navigate(url: string): Promise<CGPluginResponse<NavigateResponse>> {
     return this.__safeRequest<NavigateResponse>({
       type: 'navigate',
