@@ -114,6 +114,9 @@ export interface CommunityInfoResponsePayload {
     id: string;
     title: string;
     url: string;
+    smallLogoUrl: string;
+    largeLogoUrl: string;
+    headerImageUrl: string;
     roles: {
         id: string;
         title: string;
