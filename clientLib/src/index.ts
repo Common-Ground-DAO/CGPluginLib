@@ -1,2 +1,2 @@
 export { default as CgPluginLib } from './cgPluginLib';
-export { type CommunityInfoResponsePayload, type UserInfoResponsePayload, type ActionResponsePayload, type AnyResponsePayload, type PluginContextData } from './types';
+export { type CommunityInfoResponsePayload, type UserInfoResponsePayload, type ActionResponsePayload, type AnyResponsePayload, type PluginContextData, type CommunityRole, type Friend } from './types';

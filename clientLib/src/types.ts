@@ -122,26 +122,30 @@ export interface CommunityInfoResponsePayload {
     headerImageUrl: string;
     official: boolean;
     premium: 'BASIC' | 'PRO' | 'ENTERPRISE';
-    roles: {
-        id: string;
-        title: string;
-        type: string;
-        permissions: string[];
-        assignmentRules: {
-            type: 'free'
-        } | {
-            type: 'token';
-            rules: object;
-        } | null;
-    }[];
+    roles: CommunityRole[];
+}
+
+export interface CommunityRole {
+    id: string;
+    title: string;
+    type: string;
+    permissions: string[];
+    assignmentRules: {
+        type: 'free'
+    } | {
+        type: 'token';
+        rules: object;
+    } | null;
 }
 
 export interface UserFriendsResponsePayload {
-    friends: {
-        id: string;
-        name: string;
-        imageUrl: string;
-    }[];
+    friends: Friend[];
+}
+
+export interface Friend {
+    id: string;
+    name: string;
+    imageUrl: string;
 }
 export interface ActionResponsePayload {
     success: boolean;
