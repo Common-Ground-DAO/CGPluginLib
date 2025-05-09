@@ -32,6 +32,7 @@ export type ErrorResponse = {
 export type PluginContextData = {
     pluginId: string;
     userId: string;
+    assignableRoleIds: string[];
 }
 
 export type CGPluginResponse<T extends object> = {
@@ -95,6 +96,7 @@ export interface UserInfoResponsePayload {
     name: string;
     roles: string[];
     imageUrl: string;
+    premium: 'BASIC' | 'SILVER' | 'GOLD';
     twitter?: {
         username: string;
     };
@@ -117,6 +119,8 @@ export interface CommunityInfoResponsePayload {
     smallLogoUrl: string;
     largeLogoUrl: string;
     headerImageUrl: string;
+    official: boolean;
+    premium: 'BASIC' | 'PRO' | 'ENTERPRISE';
     roles: {
         id: string;
         title: string;
