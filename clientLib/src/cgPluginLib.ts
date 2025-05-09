@@ -141,6 +141,7 @@ class CgPluginLib {
     CgPluginLib.contextData = {
       pluginId: response.data.pluginId,
       userId: response.data.userId,
+      assignableRoleIds: response.data.assignableRoleIds || [],
     };
   }
 

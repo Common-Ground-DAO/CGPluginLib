@@ -17,6 +17,7 @@ export type SafeRequestInner = {
 export type InitResponse = {
     pluginId: string;
     userId: string;
+    assignableRoleIds: string[];
 }
 
 export type NavigateResponse = {
