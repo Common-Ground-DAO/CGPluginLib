@@ -10,11 +10,13 @@ The Common Ground Plugin Library enables developers to build secure plugins that
 - **Type Safety**: Full TypeScript support with shared type definitions
 - **Permission Locked**: Configure mandatory and optional permissions to access features like the user accounts or camera/microphone access
 - **Request Types**:
+  - `getContextData`: Base context of the plugin: user id, plugin id, and the roles it is allowed to give.
   - `userInfo`: Get details about the current user including roles
   - `communityInfo`: Get community details including available roles
   - `userFriends`: Get the mutual friends of the current user
 - **Action Types**:
   - `giveRole`: Assign roles to users (if plugin has permission)
+  - `navigate`: Move to another page inside Common Ground or open a new tab somewhere else
 
 ## How does it work?
 
@@ -25,6 +27,15 @@ The Common Ground Plugin Library enables your application to interact with the C
 Due to the sandboxed environment, plugins communicate with Common Ground through a secure message passing system. Each request is cryptographically signed to ensure authenticity and security. This library handles all the complexity of request signing and provides a simple interface for accessing Common Ground features - you just make the requests you need and the library takes care of the security details.
 
 The library exposes a strongly-typed API that clearly defines what operations are available to plugins. You can request through straightforward function calls without having to implement any of the underlying security mechanisms.
+
+### Request limits
+To ensure stable performance and prevent abuse, the following request limits are enforced:
+
+- **Rate Limit**: Maximum 100 requests per minute to Common Ground
+- **Navigation Limit**: Maximum 1 navigation request every 5 seconds
+  - This prevents rapid navigation spam that could degrade user experience
+
+Exceeding these limits will result in rejected requests. Your plugin should implement appropriate error handling for these cases.
 
 ## How do I create my plugin?
 To create a plugin, follow these steps:
