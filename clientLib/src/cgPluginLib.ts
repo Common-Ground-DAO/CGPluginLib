@@ -31,9 +31,9 @@ function base64ToArrayBuffer(base64: string) {
 }
 
 /**
- * CgPluginLib - Client library for Cryptogram plugins
+ * CgPluginLib - Client library for Common Ground plugins
  * 
- * This library provides functionality for plugins to communicate securely with the Cryptogram platform.
+ * This library provides functionality for plugins to communicate securely with the Common Ground platform.
  * It handles request signing, rate limiting, and message passing between the plugin iframe and parent window. 
  * 
  * Usage example:
