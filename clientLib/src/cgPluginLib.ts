@@ -200,7 +200,7 @@ class CgPluginLib {
     if (type && CgPluginLib.listeners[type]) {
       CgPluginLib.listeners[type]({
         data: responsePayload.data,
-        __rawResponse: response,
+        __rawResponse: JSON.stringify(payload),
       });
     }
   }

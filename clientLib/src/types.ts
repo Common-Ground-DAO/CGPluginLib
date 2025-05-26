@@ -97,7 +97,7 @@ export interface UserInfoResponsePayload {
     name: string;
     roles: string[];
     imageUrl: string;
-    premium: 'BASIC' | 'SILVER' | 'GOLD';
+    premium: 'FREE' | 'SILVER' | 'GOLD';
     twitter?: {
         username: string;
     };
@@ -121,14 +121,14 @@ export interface CommunityInfoResponsePayload {
     largeLogoUrl: string;
     headerImageUrl: string;
     official: boolean;
-    premium: 'BASIC' | 'PRO' | 'ENTERPRISE';
+    premium: 'FREE' | 'BASIC' | 'PRO' | 'ENTERPRISE';
     roles: CommunityRole[];
 }
 
 export interface CommunityRole {
     id: string;
     title: string;
-    type: string;
+    type: 'PREDEFINED' | 'CUSTOM_MANUAL_ASSIGN' | 'CUSTOM_AUTO_ASSIGN';
     permissions: string[];
     assignmentRules: {
         type: 'free'
