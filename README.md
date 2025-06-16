@@ -113,6 +113,6 @@ To see a sample implementation of the plugin, check the [CG Sample Plugin](https
 You can always just delete and create a new plugin for new keys. But if for some reason you really need the same keys again, try talking to our support.
 
 ### How do I test my still-in-development plugin on Common Ground?
-When developing your plugin locally, you'll need a way to make it accessible to Common Ground. A simple solution is to use a reverse proxy like [ngrok](https://ngrok.com/docs/getting-started/). 
+When developing your plugin locally, you can always just create a plugin on Common Ground leading to your localhost server. Doing it this way, it will only be accessible to you but it will have the full range of functionalities. You can read more on our [Sample Plugin](https://github.com/Common-Ground-DAO/CGSamplePlugin) repo.
 
 Be sure to only use this kind of reverse proxies for testing. Running your permanently like this could be a security hazard for your computer.
