@@ -14,7 +14,7 @@ import {
   PluginResponseInner,
   UserFriendsResponsePayload,
   ErrorResponse,
-  NavigateResponse,
+  OkResponse,
 } from './types';
 
 export const MAX_REQUESTS_PER_MINUTE = 100;
@@ -406,10 +406,22 @@ class CgPluginLib {
    * Asks the user to open a new window with the given url.
    * @param {string} url - The URL to navigate to. Must be a valid URL.
    */
-  public async navigate(url: string): Promise<CGPluginResponse<NavigateResponse>> {
-    return this.__safeRequest<NavigateResponse>({
+  public async navigate(url: string): Promise<CGPluginResponse<OkResponse>> {
+    return this.__safeRequest<OkResponse>({
       type: 'navigate',
       to: url,
+    });
+  }
+
+  /**
+   * Requests a specific account type.
+   * @param account - The type of account to request. Can be 'email', 'twitter', 'lukso', or 'farcaster'.
+   * @returns
+   */
+  public async requestAccount(account: 'email' | 'twitter' | 'lukso' | 'farcaster'): Promise<CGPluginResponse<OkResponse>> {
+    return this.__safeRequest<OkResponse>({
+      type: 'requestAccount',
+      account,
     });
   }
 }

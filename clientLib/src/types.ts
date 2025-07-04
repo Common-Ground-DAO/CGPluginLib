@@ -11,6 +11,9 @@ export type SafeRequestInner = {
     } | {
         type: 'navigate';
         to: string;
+    } | {
+        type: 'requestAccount';
+        account: 'email' | 'twitter' | 'lukso' | 'farcaster';
     }
 }
 
@@ -20,11 +23,11 @@ export type InitResponse = {
     assignableRoleIds: string[];
 }
 
-export type NavigateResponse = {
+export type OkResponse = {
     ok: true;
 }
 
-export type SafeRequestResponse = InitResponse | NavigateResponse;
+export type SafeRequestResponse = InitResponse | OkResponse;
 
 export type ErrorResponse = {
     error: string;
