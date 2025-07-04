@@ -15,8 +15,9 @@ The Common Ground Plugin Library enables developers to build secure plugins that
   - `communityInfo`: Get community details including available roles
   - `userFriends`: Get the mutual friends of the current user
 - **Action Types**:
-  - `giveRole`: Assign roles to users (if plugin has permission)
-  - `navigate`: Move to another page inside Common Ground or open a new tab somewhere else
+  - `giveRole`: Assign roles to users (if plugin has permission).
+  - `navigate`: Move to another page inside Common Ground or open a new tab somewhere else.
+  - `requestAccount`: If you need some account type from the user (X, Lukso, Email, etc.), you can also ask them to connect that account to Common Ground, and then make that account available for you.
 
 ## How does it work?
 
