@@ -12,9 +12,9 @@ export type SafeRequestInner = {
         type: 'navigate';
         to: string;
     } | {
-        type: 'requestAccount';
-        account: 'email' | 'twitter' | 'lukso' | 'farcaster';
-    }
+        type: 'requestPermission';
+        permission: 'email' | 'twitter' | 'lukso' | 'farcaster' | 'friends';
+    };
 }
 
 export type InitResponse = {

@@ -17,7 +17,7 @@ The Common Ground Plugin Library enables developers to build secure plugins that
 - **Action Types**:
   - `giveRole`: Assign roles to users (if plugin has permission).
   - `navigate`: Move to another page inside Common Ground or open a new tab somewhere else.
-  - `requestAccount`: If you need some account type from the user (X, Lukso, Email, etc.), you can also ask them to connect that account to Common Ground, and then make that account available for you.
+  - `requestPermission`: If you need some permission or account type from the user (Read friends, X account, Lukso, Email, etc.), you can ask them to give the permission on the fly. This can only be done for permissions that are set at least as "optional" on your plugin options.
 
 ## How does it work?
 
