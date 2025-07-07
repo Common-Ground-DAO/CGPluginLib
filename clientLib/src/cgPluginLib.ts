@@ -414,14 +414,14 @@ class CgPluginLib {
   }
 
   /**
-   * Requests a specific account type.
-   * @param account - The type of account to request. Can be 'email', 'twitter', 'lukso', or 'farcaster'.
+   * Requests a permission from the user. The requested permission must be defined in the plugin's permissions.
+   * @param permission - The type of permission to request. Can be 'email', 'twitter', 'lukso', 'farcaster', or 'friends'.
    * @returns
    */
-  public async requestAccount(account: 'email' | 'twitter' | 'lukso' | 'farcaster'): Promise<CGPluginResponse<OkResponse>> {
+  public async requestPermission(permission: 'email' | 'twitter' | 'lukso' | 'farcaster' | 'friends'): Promise<CGPluginResponse<OkResponse>> {
     return this.__safeRequest<OkResponse>({
-      type: 'requestAccount',
-      account,
+      type: 'requestPermission',
+      permission,
     });
   }
 }
